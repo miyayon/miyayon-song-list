@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>みやよんの歌える曲リスト</title>
+
+<style>
+body {
+  font-family: sans-serif;
+  background: #f7f4ff;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.song {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.song-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.artist {
+  color: #777;
+  margin-top: 5px;
+}
+
+.genre {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: #eee;
+  border-radius: 8px;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎤 みやよんの歌える曲リスト</h1>
+
+<p class="subtitle">
+みやよんが歌える曲をまとめています♪
+</p>
+
+<input
+  type="text"
+  id="search"
+  class="search"
+  placeholder="🔍 曲名・アーティスト名で検索"
+>
+
+<select id="genre">
+  <option value="all">🎵 すべてのジャンル</option>
+  <option value="J-POP">🎌 J-POP</option>
+  <option value="ボカロ">🎸 ボカロ</option>
+  <option value="アニソン">🎬 アニソン</option>
+  <option value="ゲーム">🎮 ゲーム</option>
+  <option value="VTuber">🌟 VTuber</option>
+  <option value="その他">✨ その他</option>
+</select>
+
+<div id="songList">
+
+  <div class="song" data-genre="J-POP">
+    <div class="song-title">曲名をここに入力</div>
+    <div class="artist">アーティスト名</div>
+    <span class="genre">J-POP</span>
+  </div>
+
+  <div class="song" data-genre="ボカロ">
+    <div class="song-title">曲名をここに入力</div>
+    <div class="artist">アーティスト名</div>
+    <span class="genre">ボカロ</span>
+  </div>
+
+  <div class="song" data-genre="アニソン">
+    <div class="song-title">曲名をここに入力</div>
+    <div class="artist">アーティスト名</div>
+    <span class="genre">アニソン</span>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+const search = document.getElementById("search");
+const genre = document.getElementById("genre");
+const songs = document.querySelectorAll(".song");
+
+function filterSongs() {
+
+  const keyword = search.value.toLowerCase();
+  const selectedGenre = genre.value;
+
+  songs.forEach(song => {
+
+    const text = song.innerText.toLowerCase();
+    const songGenre = song.dataset.genre;
+
+    const matchesKeyword = text.includes(keyword);
+    const matchesGenre =
+      selectedGenre === "all" ||
+      songGenre === selectedGenre;
+
+    song.style.display =
+      matchesKeyword && matchesGenre
+      ? "block"
+      : "none";
+
+  });
+
+}
+
+search.addEventListener("input", filterSongs);
+genre.addEventListener("change", filterSongs);
+
+</script>
+
+</body>
+</html>
