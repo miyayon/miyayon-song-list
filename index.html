@@ -1,167 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>みやよんの歌える曲リスト</title>
-
 <style>
-body {
-  font-family: sans-serif;
-  background: #f7f4ff;
-  margin: 0;
-  padding: 20px;
-  color: #333;
-}
-
-.container {
-  max-width: 700px;
-  margin: auto;
-}
-
-h1 {
-  text-align: center;
-  font-size: 28px;
-}
-
-.subtitle {
-  text-align: center;
-  margin-bottom: 25px;
-}
-
-.search {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 14px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  margin-bottom: 15px;
-}
-
-select {
-  width: 100%;
-  padding: 14px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
-
-.song {
-  background: white;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.song-title {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.artist {
-  color: #777;
-  margin-top: 5px;
-}
-
-.genre {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 4px 8px;
-  background: #eee;
-  border-radius: 8px;
-  font-size: 12px;
-}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:#f7f7fb;color:#222}
+header{background:white;padding:24px 16px;position:sticky;top:0;z-index:5;border-bottom:1px solid #ddd}
+h1{margin:0 0 6px;text-align:center;font-size:1.45rem}.sub{text-align:center;color:#777;font-size:.85rem}
+.controls{max-width:850px;margin:15px auto 0;display:flex;gap:8px;flex-wrap:wrap}
+input,select{flex:1;min-width:180px;padding:11px;border:1px solid #ccc;border-radius:10px;font-size:1rem;background:white}
+main{max-width:850px;margin:auto;padding:18px 14px 50px}#count{color:#666;font-size:.9rem;margin-bottom:12px}
+details{background:white;border:1px solid #e2e2e8;border-radius:12px;margin:10px 0;overflow:hidden}
+summary{padding:14px 16px;font-weight:700;cursor:pointer}
+.artist{padding:10px 16px;border-top:1px solid #eee}.artist b{display:block;margin-bottom:6px}
+ul{margin:0;padding-left:22px}li{padding:4px 0}
+.empty{display:none;text-align:center;color:#777;padding:30px}
 </style>
 </head>
-
 <body>
-
-<div class="container">
-
+<header>
 <h1>🎤 みやよんの歌える曲リスト</h1>
-
-<p class="subtitle">
-みやよんが歌える曲をまとめています♪
-</p>
-
-<input
-  type="text"
-  id="search"
-  class="search"
-  placeholder="🔍 曲名・アーティスト名で検索"
->
-
-<select id="genre">
-  <option value="all">🎵 すべてのジャンル</option>
-  <option value="J-POP">🎌 J-POP</option>
-  <option value="ボカロ">🎸 ボカロ</option>
-  <option value="アニソン">🎬 アニソン</option>
-  <option value="ゲーム">🎮 ゲーム</option>
-  <option value="VTuber">🌟 VTuber</option>
-  <option value="その他">✨ その他</option>
-</select>
-
-<div id="songList">
-
-  <div class="song" data-genre="J-POP">
-    <div class="song-title">曲名をここに入力</div>
-    <div class="artist">アーティスト名</div>
-    <span class="genre">J-POP</span>
-  </div>
-
-  <div class="song" data-genre="ボカロ">
-    <div class="song-title">曲名をここに入力</div>
-    <div class="artist">アーティスト名</div>
-    <span class="genre">ボカロ</span>
-  </div>
-
-  <div class="song" data-genre="アニソン">
-    <div class="song-title">曲名をここに入力</div>
-    <div class="artist">アーティスト名</div>
-    <span class="genre">アニソン</span>
-  </div>
-
+<div class="sub">ジャンル → アーティスト → 曲名</div>
+<div class="controls">
+<input id="q" placeholder="曲名・アーティストを検索">
+<select id="g"><option value="">すべてのジャンル</option></select>
 </div>
-
-</div>
-
+</header>
+<main><div id="count"></div><div id="list"></div><div id="empty" class="empty">該当する曲がありません。</div></main>
 <script>
-
-const search = document.getElementById("search");
-const genre = document.getElementById("genre");
-const songs = document.querySelectorAll(".song");
-
-function filterSongs() {
-
-  const keyword = search.value.toLowerCase();
-  const selectedGenre = genre.value;
-
-  songs.forEach(song => {
-
-    const text = song.innerText.toLowerCase();
-    const songGenre = song.dataset.genre;
-
-    const matchesKeyword = text.includes(keyword);
-    const matchesGenre =
-      selectedGenre === "all" ||
-      songGenre === selectedGenre;
-
-    song.style.display =
-      matchesKeyword && matchesGenre
-      ? "block"
-      : "none";
-
+const songs=[["Vtuber・ホロライブ", "AZKi", "ω猫"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "BLUE CLAPPER"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Candy-Go-Round"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "DODEKAMBITIOUS"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Dreaming Days"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Our Bright Parade"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Prism Melody"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Ridin' on Dreams"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Shiny Smily Story"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "Suspect"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "あすいろClearSky"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "でいり～だいあり～！"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "キラメキライダー☆"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "リップシンク"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "今宵はHalloween Night！"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "初恋大戦争"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "夢見る空へ"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "大切フォトグラフ"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "至上主義アドトラック"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "青春アーカイブ"], ["Vtuber・ホロライブ", "hololive IDOL PROJECT", "飛んでK！ホロライブサマー"], ["Vtuber・ホロライブ", "さくらみこ", "さくらんぼメッセージ"], ["Vtuber・ホロライブ", "ときのそら", "スタースタースタート"], ["Vtuber・ホロライブ", "アキ・ローゼンタール", "シャルイース"], ["Vtuber・ホロライブ", "ロボ子さん", "リルビ"], ["Vtuber・ホロライブ", "夏色まつり", "ラブレター"], ["Vtuber・ホロライブ", "夜空メル", "かぷうぃん中毒"], ["Vtuber・ホロライブ", "大空スバル", "スターライト"], ["Vtuber・ホロライブ", "星街すいせい", "Caramel Pain"], ["Vtuber・ホロライブ", "湊あくあ", "♯あくあ色パレット"], ["Vtuber・ホロライブ", "癒月ちょこ", "NoDistance"], ["Vtuber・ホロライブ", "白上フブキ", "ストーリーテラー"], ["Vtuber・ホロライブ", "百鬼あやめ", "melting"], ["Vtuber・ホロライブ", "紫咲シオン", "メイジ・オブ・ヴァイオレット"], ["Vtuber・ホロライブ", "赤井はあと", "めちゃゴミ♡完♡全♡食!!"]];
+const genres=[...new Set(songs.map(x=>x[0]))].sort((a,b)=>a.localeCompare(b,'ja'));
+const g=document.querySelector('#g'),q=document.querySelector('#q'),list=document.querySelector('#list');
+genres.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;g.appendChild(o)});
+function render(){
+ const query=q.value.trim().toLowerCase(), genre=g.value;
+ const filtered=songs.filter(([gg,a,t])=>(!genre||gg===genre)&&(!query||`${gg} ${a} ${t}`.toLowerCase().includes(query)));
+ const groups={};
+ filtered.forEach(([gg,a,t])=>{groups[gg]??={};groups[gg][a]??=[];groups[gg][a].push(t)});
+ list.innerHTML='';
+ Object.keys(groups).sort((a,b)=>a.localeCompare(b,'ja')).forEach(gg=>{
+  const d=document.createElement('details');d.open=true;
+  const s=document.createElement('summary');s.textContent=`${gg} (${Object.values(groups[gg]).flat().length}曲)`;d.appendChild(s);
+  Object.keys(groups[gg]).sort((a,b)=>a.localeCompare(b,'ja')).forEach(a=>{
+   const box=document.createElement('div');box.className='artist';
+   const b=document.createElement('b');b.textContent=a;box.appendChild(b);
+   const ul=document.createElement('ul');
+   groups[gg][a].sort((x,y)=>x.localeCompare(y,'ja')).forEach(t=>{const li=document.createElement('li');li.textContent=t;ul.appendChild(li)});
+   box.appendChild(ul);d.appendChild(box);
   });
-
+  list.appendChild(d);
+ });
+ document.querySelector('#count').textContent=`表示：${filtered.length}曲 / 全${songs.length}曲`;
+ document.querySelector('#empty').style.display=filtered.length?'none':'block';
 }
-
-search.addEventListener("input", filterSongs);
-genre.addEventListener("change", filterSongs);
-
+q.addEventListener('input',render);g.addEventListener('change',render);render();
 </script>
-
 </body>
 </html>
