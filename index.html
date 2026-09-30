@@ -36,26 +36,134 @@ ul{margin:0;padding-left:22px}li{padding:4px 0}
 <main><div id="count"></div><div id="list"></div><div id="empty" class="empty">該当する曲がありません。</div></main>
 <script>
 const songs=[
-["Vtuber","ホロライブ","hololive IDOL PROJECT","BLUE CLAPPER"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Candy-Go-Round"],["Vtuber","ホロライブ","hololive IDOL PROJECT","DODEKAMBITIOUS"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Dreaming Days"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Our Bright Parade"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Prism Melody"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Ridin' on Dreams"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Shiny Smily Story"],["Vtuber","ホロライブ","hololive IDOL PROJECT","Suspect"],["Vtuber","ホロライブ","hololive IDOL PROJECT","あすいろClearSky"],["Vtuber","ホロライブ","hololive IDOL PROJECT","でいり～だいあり～！"],["Vtuber","ホロライブ","hololive IDOL PROJECT","キラメキライダー☆"],["Vtuber","ホロライブ","hololive IDOL PROJECT","リップシンク"],["Vtuber","ホロライブ","hololive IDOL PROJECT","今宵はHalloween Night！"],["Vtuber","ホロライブ","hololive IDOL PROJECT","初恋大戦争"],["Vtuber","ホロライブ","hololive IDOL PROJECT","夢見る空へ"],["Vtuber","ホロライブ","hololive IDOL PROJECT","大切フォトグラフ"],["Vtuber","ホロライブ","hololive IDOL PROJECT","恋文前線"],["Vtuber","ホロライブ","hololive IDOL PROJECT","至上主義アドトラック"],["Vtuber","ホロライブ","hololive IDOL PROJECT","青春アーカイブ"],["Vtuber","ホロライブ","hololive IDOL PROJECT","飛んでK！ホロライブサマー"],
-["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","おにおにこんこんわおん"],["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","おにけもだんす"],["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","恋情詩歌"],["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","雨トキメキ恋模様"],
-["Vtuber","ホロライブ","ときのそら","Step and Go!!!"],["Vtuber","ホロライブ","ときのそら","またあした"],["Vtuber","ホロライブ","ときのそら","スタースタースタート"],["Vtuber","ホロライブ","ときのそら","ピッとして！マーマレード"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","BLUE CLAPPER"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Candy-Go-Round"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","DODEKAMBITIOUS"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Dreaming Days"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Our Bright Parade"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Prism Melody"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Ridin' on Dreams"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Shiny Smily Story"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","Suspect"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","あすいろClearSky"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","でいり～だいあり～！"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","キラメキライダー☆"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","リップシンク"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","今宵はHalloween Night！"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","初恋大戦争"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","夢見る空へ"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","大切フォトグラフ"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","恋文前線"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","至上主義アドトラック"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","青春アーカイブ"],
+["Vtuber","ホロライブ","hololive IDOL PROJECT","飛んでK！ホロライブサマー"],
+["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","おにおにこんこんわおん"],
+["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","おにけもだんす"],
+["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","恋情詩歌"],
+["Vtuber","ホロライブ","いろはにほへっと あやふぶみ","雨トキメキ恋模様"],
+["Vtuber","ホロライブ","ときのそら","Step and Go!!!"],
+["Vtuber","ホロライブ","ときのそら","またあした"],
+["Vtuber","ホロライブ","ときのそら","スタースタースタート"],
+["Vtuber","ホロライブ","ときのそら","ピッとして！マーマレード"],
 ["Vtuber","ホロライブ","ロボ子さん","リルビ"],
-["Vtuber","ホロライブ","AZKi","ω猫"],["Vtuber","ホロライブ","AZKi","いのち"],["Vtuber","ホロライブ","AZKi","猫ならばいける"],
-["Vtuber","ホロライブ","さくらみこ","1135"],["Vtuber","ホロライブ","さくらみこ","DAI DAI DAI ファンタジスタ"],["Vtuber","ホロライブ","さくらみこ","SUNAO"],["Vtuber","ホロライブ","さくらみこ","flower rhapsody"],["Vtuber","ホロライブ","さくらみこ","きゅんきゅんみこきゅんきゅん♡"],["Vtuber","ホロライブ","さくらみこ","さくらんぼメッセージ"],["Vtuber","ホロライブ","さくらみこ","にゃっはろーわーるど!!!"],["Vtuber","ホロライブ","さくらみこ","アワーツリー"],["Vtuber","ホロライブ","さくらみこ","イケ贄"],["Vtuber","ホロライブ","さくらみこ","サクラカゼ"],["Vtuber","ホロライブ","さくらみこ","ファッションビート"],["Vtuber","ホロライブ","さくらみこ","ベイビーダンス"],["Vtuber","ホロライブ","さくらみこ","マイネームイズエリート☆"],
-["Vtuber","ホロライブ","星街すいせい","Caramel Pain"],["Vtuber","ホロライブ","星街すいせい","GHOST"],["Vtuber","ホロライブ","星街すいせい","NEXT COLOR PLANET"],["Vtuber","ホロライブ","星街すいせい","Orbital Period"],["Vtuber","ホロライブ","星街すいせい","Stellar Stellar"],["Vtuber","ホロライブ","星街すいせい","TEMPLATE"],["Vtuber","ホロライブ","星街すいせい","comet"],["Vtuber","ホロライブ","星街すいせい","みちづれ"],["Vtuber","ホロライブ","星街すいせい","もうどうなってもいいや"],["Vtuber","ホロライブ","星街すいせい","ソワレ"],["Vtuber","ホロライブ","星街すいせい","ネバーフィクション"],["Vtuber","ホロライブ","星街すいせい","ビビデバ"],["Vtuber","ホロライブ","星街すいせい","ビーナスバグ"],["Vtuber","ホロライブ","星街すいせい","プラネタリウム"],["Vtuber","ホロライブ","星街すいせい","プリマドンナ"],["Vtuber","ホロライブ","星街すいせい","ムーンライト"],["Vtuber","ホロライブ","星街すいせい","レクイエム"],["Vtuber","ホロライブ","星街すいせい","天球、彗星は夜を跨いで"],["Vtuber","ホロライブ","星街すいせい","彗星"],["Vtuber","ホロライブ","星街すいせい","教室に青"],["Vtuber","ホロライブ","星街すいせい","月に向かって撃て"],["Vtuber","ホロライブ","星街すいせい","灼熱にて純情(wii-wii-woo)"],["Vtuber","ホロライブ","星街すいせい","綺麗事"],["Vtuber","ホロライブ","星街すいせい","駆けろ"],
-["Vtuber","ホロライブ","アキ・ローゼンタール","キミにまつわる運命事情"],["Vtuber","ホロライブ","アキ・ローゼンタール","シャルイース"],["Vtuber","ホロライブ","アキ・ローゼンタール","ヒロインオーディション"],
+["Vtuber","ホロライブ","AZKi","ω猫"],
+["Vtuber","ホロライブ","AZKi","いのち"],
+["Vtuber","ホロライブ","AZKi","猫ならばいける"],
+["Vtuber","ホロライブ","さくらみこ","1135"],
+["Vtuber","ホロライブ","さくらみこ","DAI DAI DAI ファンタジスタ"],
+["Vtuber","ホロライブ","さくらみこ","SUNAO"],
+["Vtuber","ホロライブ","さくらみこ","flower rhapsody"],
+["Vtuber","ホロライブ","さくらみこ","きゅんきゅんみこきゅんきゅん♡"],
+["Vtuber","ホロライブ","さくらみこ","さくらんぼメッセージ"],
+["Vtuber","ホロライブ","さくらみこ","にゃっはろーわーるど!!!"],
+["Vtuber","ホロライブ","さくらみこ","アワーツリー"],
+["Vtuber","ホロライブ","さくらみこ","イケ贄"],
+["Vtuber","ホロライブ","さくらみこ","サクラカゼ"],
+["Vtuber","ホロライブ","さくらみこ","ファッションビート"],
+["Vtuber","ホロライブ","さくらみこ","ベイビーダンス"],
+["Vtuber","ホロライブ","さくらみこ","マイネームイズエリート☆"],
+["Vtuber","ホロライブ","星街すいせい","Caramel Pain"],
+["Vtuber","ホロライブ","星街すいせい","GHOST"],
+["Vtuber","ホロライブ","星街すいせい","NEXT COLOR PLANET"],
+["Vtuber","ホロライブ","星街すいせい","Orbital Period"],
+["Vtuber","ホロライブ","星街すいせい","Stellar Stellar"],
+["Vtuber","ホロライブ","星街すいせい","TEMPLATE"],
+["Vtuber","ホロライブ","星街すいせい","comet"],
+["Vtuber","ホロライブ","星街すいせい","みちづれ"],
+["Vtuber","ホロライブ","星街すいせい","もうどうなってもいいや"],
+["Vtuber","ホロライブ","星街すいせい","ソワレ"],
+["Vtuber","ホロライブ","星街すいせい","ネバーフィクション"],
+["Vtuber","ホロライブ","星街すいせい","ビビデバ"],
+["Vtuber","ホロライブ","星街すいせい","ビーナスバグ"],
+["Vtuber","ホロライブ","星街すいせい","プラネタリウム"],
+["Vtuber","ホロライブ","星街すいせい","プリマドンナ"],
+["Vtuber","ホロライブ","星街すいせい","ムーンライト"],
+["Vtuber","ホロライブ","星街すいせい","レクイエム"],
+["Vtuber","ホロライブ","星街すいせい","天球、彗星は夜を跨いで"],
+["Vtuber","ホロライブ","星街すいせい","彗星"],
+["Vtuber","ホロライブ","星街すいせい","教室に青"],
+["Vtuber","ホロライブ","星街すいせい","月に向かって撃て"],
+["Vtuber","ホロライブ","星街すいせい","灼熱にて純情(wii-wii-woo)"],
+["Vtuber","ホロライブ","星街すいせい","綺麗事"],
+["Vtuber","ホロライブ","星街すいせい","駆けろ"],
+["Vtuber","ホロライブ","アキ・ローゼンタール","キミにまつわる運命事情"],
+["Vtuber","ホロライブ","アキ・ローゼンタール","シャルイース"],
+["Vtuber","ホロライブ","アキ・ローゼンタール","ヒロインオーディション"],
 ["Vtuber","ホロライブ","赤井はあと","めちゃゴミ♡完♡全♡食!!"],
-["Vtuber","ホロライブ","白上フブキ","Hi Fine FOX!!"],["Vtuber","ホロライブ","白上フブキ","KONKON Beats"],["Vtuber","ホロライブ","白上フブキ","LETTER☆彡"],["Vtuber","ホロライブ","白上フブキ","SUPERNOVA"],["Vtuber","ホロライブ","白上フブキ","Say!ファンファーレ"],["Vtuber","ホロライブ","白上フブキ","グローエンブレイス"],["Vtuber","ホロライブ","白上フブキ","ストーリーテラー"],["Vtuber","ホロライブ","白上フブキ","僕らの星座"],
+["Vtuber","ホロライブ","白上フブキ","Hi Fine FOX!!"],
+["Vtuber","ホロライブ","白上フブキ","KONKON Beats"],
+["Vtuber","ホロライブ","白上フブキ","LETTER☆彡"],
+["Vtuber","ホロライブ","白上フブキ","SUPERNOVA"],
+["Vtuber","ホロライブ","白上フブキ","Say!ファンファーレ"],
+["Vtuber","ホロライブ","白上フブキ","グローエンブレイス"],
+["Vtuber","ホロライブ","白上フブキ","ストーリーテラー"],
+["Vtuber","ホロライブ","白上フブキ","僕らの星座"],
 ["Vtuber","ホロライブ","バカタレ共","進め↑BAKATARATION"],
-["Vtuber","ホロライブ","夏色まつり","ばーちゃらぶ"],["Vtuber","ホロライブ","夏色まつり","ウーニャカ"],["Vtuber","ホロライブ","夏色まつり","ラブレター"],
+["Vtuber","ホロライブ","夏色まつり","ばーちゃらぶ"],
+["Vtuber","ホロライブ","夏色まつり","ウーニャカ"],
+["Vtuber","ホロライブ","夏色まつり","ラブレター"],
 ["Vtuber","ホロライブ","夜空メル","かぷうぃん中毒"],
 ["Vtuber","ホロライブ","メルティキッス","Choco♡Melty"],
-["Vtuber","ホロライブ","百鬼あやめ","melthing"],["Vtuber","ホロライブ","百鬼あやめ","melting"],["Vtuber","ホロライブ","百鬼あやめ","かわ世"],["Vtuber","ホロライブ","百鬼あやめ","夢花火"],["Vtuber","ホロライブ","百鬼あやめ","宵の余、良い"],["Vtuber","ホロライブ","百鬼あやめ","花吹雪"],
-["Vtuber","ホロライブ","紫咲シオン","アカシア・シンドローム"],["Vtuber","ホロライブ","紫咲シオン","ゴメンねメディスン"],["Vtuber","ホロライブ","紫咲シオン","シオン"],["Vtuber","ホロライブ","紫咲シオン","シャンデリア"],["Vtuber","ホロライブ","紫咲シオン","シンデレラ・マジック"],["Vtuber","ホロライブ","紫咲シオン","メイジ・オブ・ヴァイオレット"],["Vtuber","ホロライブ","紫咲シオン","リア充☆撲滅運動/紫咲シオン"],
-["Vtuber","ホロライブ","湊あくあ","#あくあ色ぱれっと"],["Vtuber","ホロライブ","湊あくあ","#きみいろプリンセス"],["Vtuber","ホロライブ","湊あくあ","uni-birth"],["Vtuber","ホロライブ","湊あくあ","♯あくあ色パレット"],["Vtuber","ホロライブ","湊あくあ","あいわな"],["Vtuber","ホロライブ","湊あくあ","あくたんのこと好きすぎ☆ソング"],["Vtuber","ホロライブ","湊あくあ","きらきら"],["Vtuber","ホロライブ","湊あくあ","エイムに愛されしガール"],["Vtuber","ホロライブ","湊あくあ","キズナトキセキ with hololive JP"],["Vtuber","ホロライブ","湊あくあ","プリンセス・キャリー"],["Vtuber","ホロライブ","湊あくあ","君の最推しにしてよ！"],["Vtuber","ホロライブ","湊あくあ","恋愛ストラテジック"],["Vtuber","ホロライブ","湊あくあ","未だ、青い"],["Vtuber","ホロライブ","湊あくあ","海想列車"],
-["Vtuber","ホロライブ","癒月ちょこ","ChocoLove"],["Vtuber","ホロライブ","癒月ちょこ","NoDistance"],["Vtuber","ホロライブ","癒月ちょこ","Secret Class"],["Vtuber","ホロライブ","癒月ちょこ","Sickbay Mistake"],["Vtuber","ホロライブ","癒月ちょこ","ちょこせんせーしょん"],["Vtuber","ホロライブ","癒月ちょこ","のーばでぃくりすます！"],["Vtuber","ホロライブ","癒月ちょこ","キミの秒針"],
+["Vtuber","ホロライブ","百鬼あやめ","melthing"],
+["Vtuber","ホロライブ","百鬼あやめ","melting"],
+["Vtuber","ホロライブ","百鬼あやめ","かわ世"],
+["Vtuber","ホロライブ","百鬼あやめ","夢花火"],
+["Vtuber","ホロライブ","百鬼あやめ","宵の余、良い"],
+["Vtuber","ホロライブ","百鬼あやめ","花吹雪"],
+["Vtuber","ホロライブ","紫咲シオン","アカシア・シンドローム"],
+["Vtuber","ホロライブ","紫咲シオン","ゴメンねメディスン"],
+["Vtuber","ホロライブ","紫咲シオン","シオン"],
+["Vtuber","ホロライブ","紫咲シオン","シャンデリア"],
+["Vtuber","ホロライブ","紫咲シオン","シンデレラ・マジック"],
+["Vtuber","ホロライブ","紫咲シオン","メイジ・オブ・ヴァイオレット"],
+["Vtuber","ホロライブ","紫咲シオン","リア充☆撲滅運動/紫咲シオン"],
+["Vtuber","ホロライブ","湊あくあ","#あくあ色ぱれっと"],
+["Vtuber","ホロライブ","湊あくあ","#きみいろプリンセス"],
+["Vtuber","ホロライブ","湊あくあ","uni-birth"],
+["Vtuber","ホロライブ","湊あくあ","♯あくあ色パレット"],
+["Vtuber","ホロライブ","湊あくあ","あいわな"],
+["Vtuber","ホロライブ","湊あくあ","あくたんのこと好きすぎ☆ソング"],
+["Vtuber","ホロライブ","湊あくあ","きらきら"],
+["Vtuber","ホロライブ","湊あくあ","エイムに愛されしガール"],
+["Vtuber","ホロライブ","湊あくあ","キズナトキセキ with hololive JP"],
+["Vtuber","ホロライブ","湊あくあ","プリンセス・キャリー"],
+["Vtuber","ホロライブ","湊あくあ","君の最推しにしてよ！"],
+["Vtuber","ホロライブ","湊あくあ","恋愛ストラテジック"],
+["Vtuber","ホロライブ","湊あくあ","未だ、青い"],
+["Vtuber","ホロライブ","湊あくあ","海想列車"],
+["Vtuber","ホロライブ","癒月ちょこ","ChocoLove"],
+["Vtuber","ホロライブ","癒月ちょこ","NoDistance"],
+["Vtuber","ホロライブ","癒月ちょこ","Secret Class"],
+["Vtuber","ホロライブ","癒月ちょこ","Sickbay Mistake"],
+["Vtuber","ホロライブ","癒月ちょこ","ちょこせんせーしょん"],
+["Vtuber","ホロライブ","癒月ちょこ","のーばでぃくりすます！"],
+["Vtuber","ホロライブ","癒月ちょこ","キミの秒針"],
 ["Vtuber","ホロライブ","スバちょこるなたん","地獄で会おうぜ！スバちょこるなたん"],
-["Vtuber","ホロライブ","大空スバル","Stellar Symphony"],["Vtuber","ホロライブ","大空スバル","ぷ・れ・あ・で・す！"],["Vtuber","ホロライブ","大空スバル","スターライト"],["Vtuber","ホロライブ","大空スバル","ホットダック！"],["Vtuber","ホロライブ","大空スバル","太陽少女"],
+["Vtuber","ホロライブ","大空スバル","Stellar Symphony"],
+["Vtuber","ホロライブ","大空スバル","ぷ・れ・あ・で・す！"],
+["Vtuber","ホロライブ","大空スバル","スターライト"],
+["Vtuber","ホロライブ","大空スバル","ホットダック！"],
+["Vtuber","ホロライブ","大空スバル","太陽少女"],
 ["Vtuber","ホロライブ","ホロ鳥","HOROTORI Dance!"],
 ["Vtuber","ホロライブ","大神ミオ","Howling"],
 ["Vtuber","ホロライブ","戌神ころね","Doggy gods street"],
@@ -78,40 +186,138 @@ const songs=[
 ["Vtuber","ホロライブ","轟はじめ","Countach"],
 ["Vtuber","ホロライブ","宝鐘マリン&Kobo Kanaeru","III"],
 ["Vtuber","ホロライブ","風間いろは","いろはすてっぷ"],
-["Vtuber","ホロライブ","大神ミオ","ドッタバッタ珍道中！"],["Vtuber","ホロライブ","大神ミオ","ナイトループ"],["Vtuber","ホロライブ","大神ミオ","Colorful Universe"],["Vtuber","ホロライブ","大神ミオ","夏宿り"],["Vtuber","ホロライブ","大神ミオ","たんぽぽ"],["Vtuber","ホロライブ","大神ミオ","小心旅行"],
-["Vtuber","ホロライブ","猫又おかゆ","もぐもぐYUMMY！"],["Vtuber","ホロライブ","猫又おかゆ","ネコカプリーナ"],["Vtuber","ホロライブ","猫又おかゆ","カミサマ・ネコサマ"],["Vtuber","ホロライブ","猫又おかゆ","毒の王子さま"],["Vtuber","ホロライブ","猫又おかゆ","ガザニア"],["Vtuber","ホロライブ","猫又おかゆ","青い傷"],["Vtuber","ホロライブ","猫又おかゆ","ノンデリシャス"],["Vtuber","ホロライブ","猫又おかゆ","琥珀糖"],["Vtuber","ホロライブ","猫又おかゆ","アデュー、サロー"],["Vtuber","ホロライブ","猫又おかゆ","毒杯スワロウ"],["Vtuber","ホロライブ","猫又おかゆ","パボ"],["Vtuber","ホロライブ","猫又おかゆ","謙虚っち"],["Vtuber","ホロライブ","猫又おかゆ","Grrr Grrr Tummy"],
-["Vtuber","ホロライブ","戌神ころね","マフィオーザ"],["Vtuber","ホロライブ","戌神ころね","Wonky Monkey"],["Vtuber","ホロライブ","戌神ころね","ころねの最凶天災☆わんだふぉーわーるど"],["Vtuber","ホロライブ","戌神ころね","かわいこちぇっく！"],["Vtuber","ホロライブ","戌神ころね","Mad POPCORN World"],
-["Vtuber","ホロライブ","不知火フレア","Funfair"],["Vtuber","ホロライブ","不知火フレア","Smile & Go!!"],["Vtuber","ホロライブ","不知火フレア","フレ！フレ！エルフレ！"],
-["Vtuber","ホロライブ","白銀ノエル","ほめのび"],["Vtuber","ホロライブ","白銀ノエル","リリカルMonster"],["Vtuber","ホロライブ","白銀ノエル","ours"],["Vtuber","ホロライブ","白銀ノエル","はっぴー"],
-["Vtuber","ホロライブ","宝鐘マリン","I'm Your Treasure Box ✱あなたはマリンせんちょうをたからばこからみつけた。"],["Vtuber","ホロライブ","宝鐘マリン","幽霊船戦"],["Vtuber","ホロライブ","宝鐘マリン","パイパイ仮面でどうかしらん？"],["Vtuber","ホロライブ","宝鐘マリン","Ahoy!! 我ら宝鐘海賊団☆"],["Vtuber","ホロライブ","宝鐘マリン","Unison"],
+["Vtuber","ホロライブ","大神ミオ","ドッタバッタ珍道中！"],
+["Vtuber","ホロライブ","大神ミオ","ナイトループ"],
+["Vtuber","ホロライブ","大神ミオ","Colorful Universe"],
+["Vtuber","ホロライブ","大神ミオ","夏宿り"],
+["Vtuber","ホロライブ","大神ミオ","たんぽぽ"],
+["Vtuber","ホロライブ","大神ミオ","小心旅行"],
+["Vtuber","ホロライブ","猫又おかゆ","もぐもぐYUMMY！"],
+["Vtuber","ホロライブ","猫又おかゆ","ネコカプリーナ"],
+["Vtuber","ホロライブ","猫又おかゆ","カミサマ・ネコサマ"],
+["Vtuber","ホロライブ","猫又おかゆ","毒の王子さま"],
+["Vtuber","ホロライブ","猫又おかゆ","ガザニア"],
+["Vtuber","ホロライブ","猫又おかゆ","青い傷"],
+["Vtuber","ホロライブ","猫又おかゆ","ノンデリシャス"],
+["Vtuber","ホロライブ","猫又おかゆ","琥珀糖"],
+["Vtuber","ホロライブ","猫又おかゆ","アデュー、サロー"],
+["Vtuber","ホロライブ","猫又おかゆ","毒杯スワロウ"],
+["Vtuber","ホロライブ","猫又おかゆ","パボ"],
+["Vtuber","ホロライブ","猫又おかゆ","謙虚っち"],
+["Vtuber","ホロライブ","猫又おかゆ","Grrr Grrr Tummy"],
+["Vtuber","ホロライブ","戌神ころね","マフィオーザ"],
+["Vtuber","ホロライブ","戌神ころね","Wonky Monkey"],
+["Vtuber","ホロライブ","戌神ころね","ころねの最凶天災☆わんだふぉーわーるど"],
+["Vtuber","ホロライブ","戌神ころね","かわいこちぇっく！"],
+["Vtuber","ホロライブ","戌神ころね","Mad POPCORN World"],
+["Vtuber","ホロライブ","不知火フレア","Funfair"],
+["Vtuber","ホロライブ","不知火フレア","Smile & Go!!"],
+["Vtuber","ホロライブ","不知火フレア","フレ！フレ！エルフレ！"],
+["Vtuber","ホロライブ","白銀ノエル","ほめのび"],
+["Vtuber","ホロライブ","白銀ノエル","リリカルMonster"],
+["Vtuber","ホロライブ","白銀ノエル","ours"],
+["Vtuber","ホロライブ","白銀ノエル","はっぴー"],
+["Vtuber","ホロライブ","宝鐘マリン","I'm Your Treasure Box ✱あなたはマリンせんちょうをたからばこからみつけた。"],
+["Vtuber","ホロライブ","宝鐘マリン","幽霊船戦"],
+["Vtuber","ホロライブ","宝鐘マリン","パイパイ仮面でどうかしらん？"],
+["Vtuber","ホロライブ","宝鐘マリン","Ahoy!! 我ら宝鐘海賊団☆"],
+["Vtuber","ホロライブ","宝鐘マリン","Unison"],
 ["Vtuber","ホロライブ","ぺこまり","ブライダルドリーム"],
-["Vtuber","ホロライブ","兎田ぺこら","ぺこらんだむぶれいん！"],["Vtuber","ホロライブ","兎田ぺこら","ラブノカサブタ"],["Vtuber","ホロライブ","兎田ぺこら","いいわけバニー"],
+["Vtuber","ホロライブ","兎田ぺこら","ぺこらんだむぶれいん！"],
+["Vtuber","ホロライブ","兎田ぺこら","ラブノカサブタ"],
+["Vtuber","ホロライブ","兎田ぺこら","いいわけバニー"],
 ["Vtuber","ホロライブ","hololive 1st Generation","Plasmagic Seasons!"],
 ["Vtuber","ホロライブ","hololive 3rd Generation","いんたらくとふぁんたじあ"],
-["Vtuber","ホロライブ","hololive GAMERS","We are GAMERS!!!!"],["Vtuber","ホロライブ","hololive GAMERS","ワンダーフューチャー！"],
+["Vtuber","ホロライブ","hololive GAMERS","We are GAMERS!!!!"],
+["Vtuber","ホロライブ","hololive GAMERS","ワンダーフューチャー！"],
 ["Vtuber","ホロライブ","hololive 4th Generation","キセキ結び"],
 ["Vtuber","ホロライブ","桐生ココ","Weather Hackers☆"],
-["Vtuber","ホロライブ","天音かなた","特者生存ワンダラダー!!"],["Vtuber","ホロライブ","天音かなた","誰も見てない夢を見ろ"],["Vtuber","ホロライブ","天音かなた","世界で一番のアイドル"],["Vtuber","ホロライブ","天音かなた","別世界"],["Vtuber","ホロライブ","天音かなた","インキャララバイ"],["Vtuber","ホロライブ","天音かなた","Knock in out!!"],["Vtuber","ホロライブ","天音かなた","Last-resort"],["Vtuber","ホロライブ","天音かなた","おらくる"],
-["Vtuber","ホロライブ","姫森ルーナ","ぐるぐる@まわる@まわルーナ"],["Vtuber","ホロライブ","姫森ルーナ","絶対忠誠♡なのなのら！"],
+["Vtuber","ホロライブ","天音かなた","特者生存ワンダラダー!!"],
+["Vtuber","ホロライブ","天音かなた","誰も見てない夢を見ろ"],
+["Vtuber","ホロライブ","天音かなた","世界で一番のアイドル"],
+["Vtuber","ホロライブ","天音かなた","別世界"],
+["Vtuber","ホロライブ","天音かなた","インキャララバイ"],
+["Vtuber","ホロライブ","天音かなた","Knock in out!!"],
+["Vtuber","ホロライブ","天音かなた","Last-resort"],
+["Vtuber","ホロライブ","天音かなた","おらくる"],
+["Vtuber","ホロライブ","姫森ルーナ","ぐるぐる@まわる@まわルーナ"],
+["Vtuber","ホロライブ","姫森ルーナ","絶対忠誠♡なのなのら！"],
 ["Vtuber","ホロライブ","猫又おかゆ&姫森ルーナ","アイドル十ヶ条"],
-["Vtuber","ホロライブ","常闇トワ","FACT"],["Vtuber","ホロライブ","常闇トワ","ライメイ"],["Vtuber","ホロライブ","常闇トワ","サンビタリア"],["Vtuber","ホロライブ","常闇トワ","AKUMA"],
-["Vtuber","ホロライブ","角巻わため","ビリ"],["Vtuber","ホロライブ","角巻わため","mayday,mayday"],
+["Vtuber","ホロライブ","常闇トワ","FACT"],
+["Vtuber","ホロライブ","常闇トワ","ライメイ"],
+["Vtuber","ホロライブ","常闇トワ","サンビタリア"],
+["Vtuber","ホロライブ","常闇トワ","AKUMA"],
+["Vtuber","ホロライブ","角巻わため","ビリ"],
+["Vtuber","ホロライブ","角巻わため","mayday,mayday"],
 ["Vtuber","ホロライブ","桃鈴ねね","ねねちのギラギラファンミーティング"],
 ["Vtuber","ホロライブ","尾丸ポルカ","ペルソナ"],
 ["Vtuber","ホロライブ","獅白ぼたん","シミュラクル"],
-["Vtuber","ホロライブ","雪花ラミィ","ラミィズバリバリワークアウト"],["Vtuber","ホロライブ","雪花ラミィ","Fleur"],
+["Vtuber","ホロライブ","雪花ラミィ","ラミィズバリバリワークアウト"],
+["Vtuber","ホロライブ","雪花ラミィ","Fleur"],
 ["Vtuber","ホロライブ","ラプラス・ダークネス","興味ないよ"],
-["Vtuber","ホロライブ","holox","迷宮なラビリンス"],["Vtuber","ホロライブ","holox","アウトサイダー計画"],
-["Vtuber","ホロライブ","鷹嶺ルイ","ホロホーク"],["Vtuber","ホロライブ","鷹嶺ルイ","魔眼ウィンク"],["Vtuber","ホロライブ","鷹嶺ルイ","ばかばっか"],["Vtuber","ホロライブ","鷹嶺ルイ","get lukky"],["Vtuber","ホロライブ","鷹嶺ルイ","ひみつのおしごと"],["Vtuber","ホロライブ","鷹嶺ルイ","Tori To Re:TreaT"],["Vtuber","ホロライブ","鷹嶺ルイ","TSUBASA"],
-["Vtuber","ホロライブ","沙花叉クロヱ","人生リセットボタンぽちーw"],["Vtuber","ホロライブ","沙花叉クロヱ","モードク"],["Vtuber","ホロライブ","沙花叉クロヱ","擬態ごっこ"],["Vtuber","ホロライブ","沙花叉クロヱ","パラライズ"],
-["Vtuber","ホロライブ","博衣こより","管制塔より"],["Vtuber","ホロライブ","博衣こより","シアワセ√コヨリニウム"],["Vtuber","ホロライブ","博衣こより","乙女よ求めよQ.E.D."],["Vtuber","ホロライブ","博衣こより","エゴイスティック・シーソー"],
-
-["HoneyWorks","HoneyWorks","HoneyWorks","婚約戦争"],["HoneyWorks","HoneyWorks","HoneyWorks","東京サマーセッション"],["HoneyWorks","HoneyWorks","HoneyWorks","東京ウィンターセッション"],["HoneyWorks","HoneyWorks","HoneyWorks","東京オータムセッション"],["HoneyWorks","HoneyWorks","HoneyWorks","東京スプリングセッション"],["HoneyWorks","HoneyWorks","HoneyWorks","ロマンチックウェディング"],
-["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","告白予行練習"],["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","告白予行練習-another story-"],["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","病名恋ワズライ"],
+["Vtuber","ホロライブ","holox","迷宮なラビリンス"],
+["Vtuber","ホロライブ","holox","アウトサイダー計画"],
+["Vtuber","ホロライブ","鷹嶺ルイ","ホロホーク"],
+["Vtuber","ホロライブ","鷹嶺ルイ","魔眼ウィンク"],
+["Vtuber","ホロライブ","鷹嶺ルイ","ばかばっか"],
+["Vtuber","ホロライブ","鷹嶺ルイ","get lukky"],
+["Vtuber","ホロライブ","鷹嶺ルイ","ひみつのおしごと"],
+["Vtuber","ホロライブ","鷹嶺ルイ","Tori To Re:TreaT"],
+["Vtuber","ホロライブ","鷹嶺ルイ","TSUBASA"],
+["Vtuber","ホロライブ","沙花叉クロヱ","人生リセットボタンぽちーw"],
+["Vtuber","ホロライブ","沙花叉クロヱ","モードク"],
+["Vtuber","ホロライブ","沙花叉クロヱ","擬態ごっこ"],
+["Vtuber","ホロライブ","沙花叉クロヱ","パラライズ"],
+["Vtuber","ホロライブ","博衣こより","管制塔より"],
+["Vtuber","ホロライブ","博衣こより","シアワセ√コヨリニウム"],
+["Vtuber","ホロライブ","博衣こより","乙女よ求めよQ.E.D."],
+["Vtuber","ホロライブ","博衣こより","エゴイスティック・シーソー"],
+["HoneyWorks","HoneyWorks","HoneyWorks","婚約戦争"],
+["HoneyWorks","HoneyWorks","HoneyWorks","東京サマーセッション"],
+["HoneyWorks","HoneyWorks","HoneyWorks","東京ウィンターセッション"],
+["HoneyWorks","HoneyWorks","HoneyWorks","東京オータムセッション"],
+["HoneyWorks","HoneyWorks","HoneyWorks","東京スプリングセッション"],
+["HoneyWorks","HoneyWorks","HoneyWorks","ロマンチックウェディング"],
+["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","告白予行練習"],
+["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","告白予行練習-another story-"],
+["HoneyWorks","HoneyWorks","瀬戸口優・榎本夏樹","病名恋ワズライ"],
 ["HoneyWorks","HoneyWorks","榎本夏樹・綾瀬恋雪","告白ライバル宣言"],
-["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","ヤキモチの答え"],["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","ヤキモチの答え-another story-"],["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","僕が名前を呼ぶ日"],["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","私が恋を知る日"],["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","恋人たちのハッピーバースデー"],["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","愛しちゃってるよ"],
-["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","初恋の絵本"],["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","初恋の絵本-another story-"],["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","Re:初恋の絵本"],["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","さよなら両片想"],
-["HoneyWorks","HoneyWorks","芹沢春輝（幼少期）","聞こえますか"]
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","ヤキモチの答え"],
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","ヤキモチの答え-another story-"],
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","僕が名前を呼ぶ日"],
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","私が恋を知る日"],
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","恋人たちのハッピーバースデー"],
+["HoneyWorks","HoneyWorks","望月蒼太・早坂あかり","愛しちゃってるよ"],
+["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","初恋の絵本"],
+["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","初恋の絵本-another story-"],
+["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","Re:初恋の絵本"],
+["HoneyWorks","HoneyWorks","芹沢春輝・合田美桜","さよなら両片想"],
+["HoneyWorks","HoneyWorks","芹沢春輝（幼少期）","聞こえますか"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","金曜日のおはよう"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","金曜日のおはよう-another story-"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","可愛くなりたい"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","かっこよくなりたい"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","日曜日の秘密"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","水曜日の約束"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","水曜日の約束-another story-"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","火曜日のちゅーデイ"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","火曜日のちゅーデイ-another story-"],
+["HoneyWorks","HoneyWorks","濱中翠・成海聖奈","木曜日のスキャンダル"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","これ青春アンダースタンド"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","三角ジェラシー"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","三角ジェラシー-another story-"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","今好きになる"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","今好きになる-triangle story-"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・綾瀬恋雪・瀬戸口雛","センパイ"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・瀬戸口雛","大嫌いなはずだった"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・瀬戸口雛","選んでくれてありがとう"],
+["HoneyWorks","HoneyWorks","榎本虎太郎・瀬戸口雛","運命の人だった"],
+["HoneyWorks","HoneyWorks","柴崎健・高見沢アリサ","イジワルな出会い"],
+["HoneyWorks","HoneyWorks","柴崎健・高見沢アリサ","男の子の目的って何"],
+["HoneyWorks","HoneyWorks","柴崎健・高見沢アリサ","女の子の愛って何"],
+["HoneyWorks","HoneyWorks","山本幸大・服部樹里","可愛いねって言われちゃった"],
+["HoneyWorks","HoneyWorks","山本幸大・服部樹里","好きな人に似ている後輩"],
+["HoneyWorks","HoneyWorks","山本幸大・服部樹里","うちら、恋人宣言"]
 ];
 
 const uniqueSongs=[];
@@ -137,135 +343,72 @@ function makeSongList(titles){
  });
  return ul;
 }
-
 function makeArtistDetails(name,titles){
- const ad=document.createElement('details');
- ad.className='artist';
- ad.open=false;
- const as=document.createElement('summary');
- as.textContent=`${name} (${titles.length}曲)`;
- ad.appendChild(as);
- ad.appendChild(makeSongList(titles));
- return ad;
+ const ad=document.createElement('details');ad.className='artist';ad.open=false;
+ const as=document.createElement('summary');as.textContent=`${name} (${titles.length}曲)`;
+ ad.appendChild(as);ad.appendChild(makeSongList(titles));return ad;
 }
-
 function makeUnitMemberDetails(name,titles){
- const ad=document.createElement('details');
- ad.className='unit-member';
- ad.open=false;
- const as=document.createElement('summary');
- as.textContent=`${name} (${titles.length}曲)`;
- ad.appendChild(as);
- ad.appendChild(makeSongList(titles));
- return ad;
+ const ad=document.createElement('details');ad.className='unit-member';ad.open=false;
+ const as=document.createElement('summary');as.textContent=`${name} (${titles.length}曲)`;
+ ad.appendChild(as);ad.appendChild(makeSongList(titles));return ad;
 }
-
 function render(){
  const query=q.value.trim().toLowerCase(),genre=g.value;
  const filtered=uniqueSongs.filter(([gg,group,a,t])=>
    (!genre||gg===genre)&&(!query||`${gg} ${group} ${a} ${t}`.toLowerCase().includes(query)));
-
  const groups={};
  filtered.forEach(([gg,group,a,t])=>{
-   groups[gg]??={};
-   groups[gg][group]??={};
-   groups[gg][group][a]??=[];
-   groups[gg][group][a].push(t);
+   groups[gg]??={};groups[gg][group]??={};groups[gg][group][a]??=[];groups[gg][group][a].push(t);
  });
-
  list.innerHTML='';
-
  Object.keys(groups).sort((a,b)=>{
    const order=["Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","その他"];
    return order.indexOf(a)-order.indexOf(b);
  }).forEach(gg=>{
-   const gd=document.createElement('details');
-   gd.open=false;
+   const gd=document.createElement('details');gd.open=false;
    const gs=document.createElement('summary');
    const genreCount=Object.values(groups[gg]).flatMap(x=>Object.values(x).flat()).length;
-   gs.textContent=`${gg} (${genreCount}曲)`;
-   gd.appendChild(gs);
-
+   gs.textContent=`${gg} (${genreCount}曲)`;gd.appendChild(gs);
    if(gg==="Vtuber"){
      const holoArtists=groups[gg]["ホロライブ"]||{};
      const holoCount=Object.values(holoArtists).reduce((n,titles)=>n+titles.length,0);
      if(holoCount===0) return;
-     const hololive=document.createElement('details');
-     hololive.open=false;
-     hololive.style.margin='8px 10px';
-     const hs=document.createElement('summary');
-     hs.textContent=`ホロライブ (${genreCount}曲)`;
-     hololive.appendChild(hs);
-
-     const unitSongs=unitOrder
-       .filter(unit=>holoArtists[unit])
-       .map(unit=>[unit,holoArtists[unit]]);
-
-     const ud=document.createElement('details');
-     ud.open=false;
-     ud.style.margin='8px 10px';
-     const us=document.createElement('summary');
-     const unitCount=unitSongs.reduce((n,[,titles])=>n+titles.length,0);
-     us.textContent=`ユニット曲 (${unitCount}曲)`;
-     ud.appendChild(us);
-
-     unitSongs.forEach(([unit,titles])=>{
-       ud.appendChild(makeUnitMemberDetails(unit,[...titles]));
-     });
+     const hololive=document.createElement('details');hololive.open=false;hololive.style.margin='8px 10px';
+     const hs=document.createElement('summary');hs.textContent=`ホロライブ (${genreCount}曲)`;hololive.appendChild(hs);
+     const unitSongs=unitOrder.filter(unit=>holoArtists[unit]).map(unit=>[unit,holoArtists[unit]]);
+     const ud=document.createElement('details');ud.open=false;ud.style.margin='8px 10px';
+     const us=document.createElement('summary');const unitCount=unitSongs.reduce((n,[,titles])=>n+titles.length,0);
+     us.textContent=`ユニット曲 (${unitCount}曲)`;ud.appendChild(us);
+     unitSongs.forEach(([unit,titles])=>ud.appendChild(makeUnitMemberDetails(unit,[...titles])));
      hololive.appendChild(ud);
-
      const normalArtists=Object.keys(holoArtists).filter(name=>!unitMembers.has(name));
      const orderedArtists=artistOrder.filter(a=>normalArtists.includes(a));
-     normalArtists.filter(a=>!orderedArtists.includes(a))
-       .sort((a,b)=>a.localeCompare(b,'ja'))
-       .forEach(a=>orderedArtists.push(a));
-
-     orderedArtists.forEach(name=>{
-       hololive.appendChild(makeArtistDetails(name,[...holoArtists[name]]));
-     });
-
-     gd.appendChild(hololive);
-     list.appendChild(gd);
+     normalArtists.filter(a=>!orderedArtists.includes(a)).sort((a,b)=>a.localeCompare(b,'ja')).forEach(a=>orderedArtists.push(a));
+     orderedArtists.forEach(name=>hololive.appendChild(makeArtistDetails(name,[...holoArtists[name]])));
+     gd.appendChild(hololive);list.appendChild(gd);
    }else if(gg==="HoneyWorks"){
-     const groupArtists=groups[gg]["HoneyWorks"]||{};
-     const normalArtists=Object.keys(groupArtists);
+     const groupArtists=groups[gg]["HoneyWorks"]||{};const normalArtists=Object.keys(groupArtists);
      const orderedArtists=honeyWorksArtistOrder.filter(a=>normalArtists.includes(a));
-     normalArtists.filter(a=>!orderedArtists.includes(a))
-       .sort((a,b)=>a.localeCompare(b,'ja'))
-       .forEach(a=>orderedArtists.push(a));
-
-     orderedArtists.forEach(name=>{
-       gd.appendChild(makeArtistDetails(name,[...groupArtists[name]]));
-     });
+     normalArtists.filter(a=>!orderedArtists.includes(a)).sort((a,b)=>a.localeCompare(b,'ja')).forEach(a=>orderedArtists.push(a));
+     orderedArtists.forEach(name=>gd.appendChild(makeArtistDetails(name,[...groupArtists[name]])));
      list.appendChild(gd);
    }else{
-     const groupNames=Object.keys(groups[gg]);
-     groupNames.sort((a,b)=>a.localeCompare(b,'ja'));
+     const groupNames=Object.keys(groups[gg]);groupNames.sort((a,b)=>a.localeCompare(b,'ja'));
      groupNames.forEach(groupName=>{
-       const groupArtists=groups[gg][groupName];
-       const groupCount=Object.values(groupArtists).reduce((n,titles)=>n+titles.length,0);
-       const groupDetails=document.createElement('details');
-       groupDetails.open=false;
-       groupDetails.style.margin='8px 10px';
-       const groupSummary=document.createElement('summary');
-       groupSummary.textContent=`${groupName} (${groupCount}曲)`;
+       const groupArtists=groups[gg][groupName];const groupCount=Object.values(groupArtists).reduce((n,titles)=>n+titles.length,0);
+       const groupDetails=document.createElement('details');groupDetails.open=false;groupDetails.style.margin='8px 10px';
+       const groupSummary=document.createElement('summary');groupSummary.textContent=`${groupName} (${groupCount}曲)`;
        groupDetails.appendChild(groupSummary);
-
-       Object.keys(groupArtists).sort((a,b)=>a.localeCompare(b,'ja')).forEach(name=>{
-         groupDetails.appendChild(makeArtistDetails(name,[...groupArtists[name]]));
-       });
+       Object.keys(groupArtists).sort((a,b)=>a.localeCompare(b,'ja')).forEach(name=>groupDetails.appendChild(makeArtistDetails(name,[...groupArtists[name]])));
        gd.appendChild(groupDetails);
-     });
-     list.appendChild(gd);
+     });list.appendChild(gd);
    }
  });
-
  document.querySelector('#count').textContent=`表示：${filtered.length}曲 / 全${uniqueSongs.length}曲`;
  document.querySelector('#empty').style.display=filtered.length?'none':'block';
 }
-q.addEventListener('input',render);
-g.addEventListener('change',render);
-render();
+q.addEventListener('input',render);g.addEventListener('change',render);render();
 </script>
 </body>
 </html>
