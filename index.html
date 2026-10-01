@@ -3559,9 +3559,9 @@ const songs=[
 "Virtual to LIVE"
 ],
 [
-"その他",
+"J-POPなど",
 "極道主婦",
-"Da-iCE",
+"",
 "CITRUS"
 ],
 [
@@ -3569,6 +3569,18 @@ const songs=[
 "HoneyWorks",
 "ハコニワリリィ",
 "絶対称賛！"
+],
+[
+"HoneyWorks",
+"HoneyWorks",
+"ハコニワリリィ",
+"キラキラ"
+],
+[
+"HoneyWorks",
+"HoneyWorks",
+"CHiCO with HoneyWorks・まふまふ",
+"ビビっとラブ"
 ]
 ];
 
@@ -3615,7 +3627,7 @@ function render(){
  });
  list.innerHTML='';
  Object.keys(groups).sort((a,b)=>{
-   const order=["Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","その他"];
+   const order=["Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","J-POPなど","その他"];
    return order.indexOf(a)-order.indexOf(b);
  }).forEach(gg=>{
    const gd=document.createElement('details');gd.open=false;
@@ -3670,7 +3682,10 @@ function render(){
        const groupDetails=document.createElement('details');groupDetails.open=false;groupDetails.style.margin='8px 10px';
        const groupSummary=document.createElement('summary');groupSummary.textContent=`${groupName} (${groupCount}曲)`;
        groupDetails.appendChild(groupSummary);
-       Object.keys(groupArtists).sort((a,b)=>a.localeCompare(b,'ja')).forEach(name=>groupDetails.appendChild(makeArtistDetails(name,[...groupArtists[name]])));
+       Object.keys(groupArtists).sort((a,b)=>a.localeCompare(b,'ja')).forEach(name=>{
+         if(name==='') groupDetails.appendChild(makeSongList([...groupArtists[name]]));
+         else groupDetails.appendChild(makeArtistDetails(name,[...groupArtists[name]]));
+       });
        gd.appendChild(groupDetails);
      });list.appendChild(gd);
    }
