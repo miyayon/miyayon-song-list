@@ -5122,7 +5122,25 @@ function render(){
      const orderedArtists=artistOrder.filter(a=>normalArtists.includes(a));
      normalArtists.filter(a=>!orderedArtists.includes(a)).sort((a,b)=>a.localeCompare(b,'ja')).forEach(a=>orderedArtists.push(a));
      orderedArtists.forEach(name=>hololive.appendChild(makeArtistDetails(name,[...holoArtists[name]])));
-     gd.appendChild(hololive);list.appendChild(gd);
+     gd.appendChild(hololive);
+
+     // ホロライブ以外のVtuberグループも表示
+     const otherGroups=Object.keys(groups[gg]).filter(groupName=>groupName!=="ホロライブ").sort((a,b)=>a.localeCompare(b,'ja'));
+     otherGroups.forEach(groupName=>{
+       const groupArtists=groups[gg][groupName];
+       const groupCount=Object.values(groupArtists).reduce((n,titles)=>n+titles.length,0);
+       const groupDetails=document.createElement('details');
+       groupDetails.open=false;
+       groupDetails.style.margin='8px 10px';
+       const groupSummary=document.createElement('summary');
+       groupSummary.textContent=`${groupName} (${groupCount}曲)`;
+       groupDetails.appendChild(groupSummary);
+       Object.keys(groupArtists).sort((a,b)=>a.localeCompare(b,'ja')).forEach(name=>{
+         groupDetails.appendChild(makeArtistDetails(name,[...groupArtists[name]]));
+       });
+       gd.appendChild(groupDetails);
+     });
+     list.appendChild(gd);
    }else if(gg==="HoneyWorks"){
      const groupArtists=groups[gg]["HoneyWorks"]||{};const normalArtists=Object.keys(groupArtists);
      const orderedArtists=honeyWorksArtistOrder.filter(a=>normalArtists.includes(a));
