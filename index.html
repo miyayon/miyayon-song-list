@@ -142,7 +142,9 @@ input:focus,select:focus{
   box-shadow:0 0 0 4px rgba(139,177,195,.17);
 }
 select{
-  appearance:auto;
+  appearance:none;
+  -webkit-appearance:none;
+  -moz-appearance:none;
   padding-left:58px;
 }
 .controls:before{
@@ -231,29 +233,7 @@ main{
   font-size:29px;
   font-weight:350;
 }
-#list>details>summary:after{
-  content:"›";
-  position:absolute;
-  right:27px;
-  top:50%;
-  transform:translateY(-54%);
-  color:#75a2b8;
-  font-size:34px;
-  font-weight:400;
-}
-#list>details:first-child>summary{
-  color:#284d63;
-  background:linear-gradient(90deg,#a6def0,#9ed7ea);
-}
-#list>details:first-child>summary:before{
-  content:"♫";
-  background:linear-gradient(145deg,#6aabc5,#5a91aa);
-  font-size:25px;
-}
-#list>details:first-child>summary:after{
-  content:"⌄";
-  font-size:31px;
-}
+#list>details>summary:after{display:none}
 .artist{
   padding:10px 18px 15px;
   background:rgba(244,250,252,.72);
@@ -325,15 +305,7 @@ li:last-child{border-bottom:0}
   line-height:1.45;
 }
 #list>details>details>summary::-webkit-details-marker{display:none}
-#list>details>details>summary:after{
-  content:"⌄";
-  position:absolute;
-  right:18px;
-  top:50%;
-  transform:translateY(-55%);
-  color:#7198ab;
-  font-size:26px;
-}
+#list>details>details>summary:after{display:none}
 #list .artist{
   padding:11px 16px 16px;
 }
@@ -355,15 +327,7 @@ li:last-child{border-bottom:0}
   line-height:1.45;
 }
 #list .artist>summary:after,
-#list .unit-member>summary:after{
-  content:"⌄";
-  position:absolute;
-  right:14px;
-  top:50%;
-  transform:translateY(-55%);
-  color:#82a5b6;
-  font-size:23px;
-}
+#list .unit-member>summary:after{display:none}
 #list .artist details,
 #list .unit-member{
   border-radius:17px;
@@ -432,10 +396,7 @@ li:last-child{border-bottom:0}
     height:43px;
     font-size:26px;
   }
-  #list>details>summary:after{
-    right:17px;
-    font-size:30px;
-  }
+  #list>details>summary:after{display:none}
   #list>details>details{
     margin:8px 9px !important;
     border-radius:19px;
@@ -5053,7 +5014,19 @@ const songs=[
 "",
 "鈴木雅之",
 "め組のひと"
-]
+],
+[
+"十八番",
+"",
+"",
+"Bunny Girl"
+],
+[
+"十八番",
+"",
+"",
+"ノンブレス・オブリージュ"
+],
 ];
 
 const uniqueSongs=[];
@@ -5070,6 +5043,7 @@ const unitMembers=new Set(unitOrder);
 
 const genres=[...new Set(uniqueSongs.map(x=>x[0]))].sort((a,b)=>a.localeCompare(b,'ja'));
 const g=document.querySelector('#g'),q=document.querySelector('#q'),list=document.querySelector('#list');
+genres.sort((a,b)=>{if(a==='十八番')return -1;if(b==='十八番')return 1;return a.localeCompare(b,'ja')});
 genres.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;g.appendChild(o)});
 
 function makeSongList(titles){
@@ -5099,14 +5073,18 @@ function render(){
  });
  list.innerHTML='';
  Object.keys(groups).sort((a,b)=>{
-   const order=["Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","邦楽","その他"];
-   return order.indexOf(a)-order.indexOf(b);
+   const order=["十八番","Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","邦楽","その他"];
+   const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?999:ia)-(ib<0?999:ib)||a.localeCompare(b,'ja');
  }).forEach(gg=>{
    const gd=document.createElement('details');gd.open=false;
    const gs=document.createElement('summary');
    const genreCount=Object.values(groups[gg]).flatMap(x=>Object.values(x).flat()).length;
    gs.textContent=`${gg} (${genreCount}曲)`;gd.appendChild(gs);
-   if(gg==="Vtuber"){
+   if(gg==="十八番"){
+     const titles=Object.values(groups[gg]).flatMap(groupArtists=>Object.values(groupArtists).flat()).sort((a,b)=>a.localeCompare(b,'ja'));
+     gd.appendChild(makeSongList(titles));
+     list.appendChild(gd);
+   }else if(gg==="Vtuber"){
      const holoArtists=groups[gg]["ホロライブ"]||{};
      const holoCount=Object.values(holoArtists).reduce((n,titles)=>n+titles.length,0);
      if(holoCount===0) return;
