@@ -5027,6 +5027,30 @@ const songs=[
 "",
 "ノンブレス・オブリージュ"
 ],
+[
+"アイドル",
+"",
+"すとぷり",
+"アモーレ・ミオ"
+],
+[
+"アイドル",
+"",
+"すとぷり",
+"おかえりらぶっ！"
+],
+[
+"アイドル",
+"",
+"すとぷり",
+"僕らだけのシャンデリア"
+],
+[
+"アイドル",
+"",
+"すとぷり",
+"ギンギラ銀河"
+],
 ];
 
 const uniqueSongs=[];
@@ -5063,10 +5087,81 @@ function makeUnitMemberDetails(name,titles){
  const as=document.createElement('summary');as.textContent=`${name} (${titles.length}曲)`;
  ad.appendChild(as);ad.appendChild(makeSongList(titles));return ad;
 }
+// 検索用の表記ゆれ吸収
+function kanaNormalize(str){
+  return String(str||'')
+    .normalize('NFKC')
+    .toLowerCase()
+    .replace(/[ァ-ヶ]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0x60))
+    .replace(/[ーｰ]/g,'ー')
+    .replace(/[　\s]+/g,'')
+    .replace(/[・･]/g,'')
+    .replace(/[！!？?、。,.，]/g,'');
+}
+
+// 英語表記の代表的な読み。英語曲名・グループ名もかな検索できるようにする。
+const englishKanaAliases={
+  'bunny girl':'バニーガール','virtual to live':'バーチャルトゥーライブ',
+  'blue clapper':'ブルークラッパー','candy-go-round':'キャンディーゴーラウンド',
+  'dodekambitious':'ドデカンビシャス','dreaming days':'ドリーミングデイズ',
+  'our bright parade':'アワーブライトパレード','prism melody':'プリズムメロディー',
+  'riding on dreams':'ライディングオン ドリームズ','ridin on dreams':'ライディンオン ドリームズ',
+  'shiny smily story':'シャイニースマイリーストーリー','suspect':'サスペクト',
+  'step and go':'ステップアンドゴー','next color planet':'ネクストカラープラネット',
+  'stellar stellar':'ステラーステラー','palette':'パレット','howling':'ハウリング',
+  'my song':'マイソング','lioness pride':'ライオネスプライド','colorful universe':'カラフルユニバース',
+  'funfair':'ファンフェア','smile & go':'スマイルアンドゴー','unison':'ユニゾン',
+  'love & kiss':'ラブアンドキス','good bye':'グッバイ','eye':'アイ','hero':'ヒーロー',
+  'daybreak frontline':'デイブレイクフロントライン','surges':'サージズ','circus panic':'サーカスパニック',
+  'kick back':'キックバック','unravel':'アンラベル','tot musica':'トットムジカ',
+  'only my railgun':'オンリーマイレールガン','sisters noise':'シスターズノイズ',
+  'level5-judgelight-':'レベルファイブジャッジライト','final phase':'ファイナルフェイズ',
+  'this game':'ディスゲーム','there is a reason':'ゼアイズアリーズン','bling-bang-bang-born':'ブリンバンバンボーン',
+  'dream solister':'ドリームソリスター','blast':'ブラスト','journey':'ジャーニー',
+  'sparkling daydream':'スパークリングデイドリーム','here':'ヒア','fantastic future':'ファンタスティックフューチャー',
+  'baby sweet berry love':'ベイビースイートベリーラブ','fantastic dreamer':'ファンタスティックドリーマー',
+  'tomorrow':'トゥモロー','butter-fly':'バタフライ','god knows':'ゴッドノウズ',
+  'rpg':'アールピージー','let it go':'レットイットゴー','cry baby':'クライベイビー',
+  'virtual to live':'バーチャルトゥーライブ','citrus':'シトラス','overdose':'オーバードーズ',
+  'hello world':'ハローワールド','sta rt':'スタート','soranji':'ソランジ','flamingo':'フラミンゴ',
+  'lemon':'レモン','loser':'ルーザー','wxy':'ダブリューエックスワイ','bunnygirl':'バニーガール',
+  'hololive':'ホロライブ','idol project':'アイドルプロジェクト','honeyworks':'ハニーワークス',
+  'mitchie m':'ミッチェルミー','orangestar':'オレンジスター','kanaria':'カナリア','kemu':'ケム',
+  'cosmo@暴走p':'コスモ','deco27':'デコニーナ','neru':'ネル','40mp':'ヨンジュウメートルピー',
+  'aiko':'アイコ','ado':'アド','ayase':'アヤセ','eve':'イヴ','giga':'ギガ','mimi':'ミミ','syudou':'シュドウ',
+  'chinozo':'チノゾー','wotaku':'ヲタク','last note':'ラストノート','n emu':'ネム','nému':'ネム',
+  'sasakure.uk':'ササクレユーケイ','yukkedoluce':'ユッケドルチェ','meiyo':'メイヨー',
+  'yunomi & nicamoq':'ユノミアンドニカモク','m!lk':'ミルク','dish':'ディッシュ','news':'ニュース',
+  'back number':'バックナンバー','bump of chicken':'バンプオブチキン','official髭男dism':'オフィシャルヒゲダンディズム',
+  'mrs. green apple':'ミセスグリーンアップル','unison square garden':'ユニゾンスクエアガーデン',
+  'sekai no owari':'セカイノオワリ','supercell':'スーパーセル','fhana':'ファナ','junna':'ジュンナ',
+  'spy×family':'スパイファミリー','naruto':'ナルト','sa o':'エスエーオー','saucy dog':'サウシードッグ',
+  'superfly':'スーパーフライ','tani yuuki':'タニユウキ','field of view':'フィールドオブビュー',
+  'uverbworld':'ウーバーワールド','the oral cigarettes':'ジオーラルシガレッツ','beastars':'ビースターズ'
+};
+
+function searchVariants(value){
+  const raw=String(value||'');
+  const n=kanaNormalize(raw);
+  const variants=[n];
+  const alias=englishKanaAliases[raw.toLowerCase().trim()];
+  if(alias) variants.push(kanaNormalize(alias));
+  return variants;
+}
+
+function searchMatch(query, fields){
+  if(!query) return true;
+  const qv=searchVariants(query);
+  return fields.some(field=>{
+    const fv=searchVariants(field);
+    return qv.some(qx=>fv.some(fx=>fx.includes(qx)));
+  });
+}
+
 function render(){
- const query=q.value.trim().toLowerCase(),genre=g.value;
+ const query=q.value.trim(),genre=g.value;
  const filtered=uniqueSongs.filter(([gg,group,a,t])=>
-   (!genre||gg===genre)&&(!query||`${gg} ${group} ${a} ${t}`.toLowerCase().includes(query)));
+   (!genre||gg===genre)&&(!query||searchMatch(query,[gg,group,a,t])));
  const groups={};
  filtered.forEach(([gg,group,a,t])=>{
    groups[gg]??={};groups[gg][group]??={};groups[gg][group][a]??=[];groups[gg][group][a].push(t);
@@ -5132,7 +5227,7 @@ function render(){
      normalArtists.filter(a=>!orderedArtists.includes(a)).sort((a,b)=>a.localeCompare(b,'ja')).forEach(a=>orderedArtists.push(a));
      orderedArtists.forEach(name=>gd.appendChild(makeArtistDetails(name,[...groupArtists[name]])));
      list.appendChild(gd);
-   }else if(gg==="邦楽"){
+   }else if(gg==="邦楽"||gg==="アイドル"){
      const groupArtists=groups[gg][""]||{};
      const normalArtists=Object.keys(groupArtists);
      const orderedArtists=artistOrder.filter(a=>normalArtists.includes(a));
