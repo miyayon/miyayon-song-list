@@ -20,13 +20,11 @@ body{
     radial-gradient(circle at 92% 18%,rgba(255,255,255,.78) 0 10px,transparent 11px),
     linear-gradient(180deg,#eef8fb 0%,#e7f3f7 42%,#dbeaf0 100%);
 }
+/* 画面左上・右下の半円装飾を非表示 */
 body:before,
 body:after{
+  display:none;
   content:"";
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  border-radius:50%;
 }
 body:before{
   width:190px;height:190px;
@@ -106,7 +104,7 @@ h1:after{
   margin:22px auto 0;
   padding:13px;
   display:grid;
-  grid-template-columns:1.15fr 1fr;
+  grid-template-columns:1.15fr 1fr 1fr;
   gap:14px;
   background:rgba(245,251,253,.72);
   border:1px solid rgba(255,255,255,.9);
@@ -207,7 +205,7 @@ main{
 #list>details>summary{
   position:relative;
   min-height:72px;
-  padding:18px 67px 18px 105px;
+  padding:18px 67px 18px 24px;
   display:flex;
   align-items:center;
   color:#31556b;
@@ -234,6 +232,9 @@ main{
   font-weight:350;
 }
 #list>details>summary:after{display:none}
+/* ジャンル表示・アーティスト表示の水色の＋アイコンを非表示 */
+#list>details>summary:before{display:none}
+#list>details.artist>summary{padding-left:24px}
 .artist{
   padding:10px 18px 15px;
   background:rgba(244,250,252,.72);
@@ -387,7 +388,7 @@ li:last-child{border-bottom:0}
   #list>details{margin:9px 0;border-radius:23px}
   #list>details>summary{
     min-height:63px;
-    padding:15px 53px 15px 84px;
+    padding:15px 24px 15px 24px;
     font-size:1rem;
   }
   #list>details>summary:before{
@@ -437,7 +438,12 @@ li:last-child{border-bottom:0}
 <div class="sub">ジャンル → グループ → ユニット曲／アーティスト → 曲名</div>
 <div class="controls">
 <input id="q" placeholder="曲名・アーティストを検索">
-<select id="g"><option value="">すべてのジャンル</option></select>
+<select id="g" aria-label="ジャンルで絞り込み"><option value="">すべてのジャンル</option></select>
+<select id="view" aria-label="表示方法">
+<option value="genre">表示：ジャンル</option>
+<option value="artist">表示：アーティスト</option>
+<option value="song">表示：曲名</option>
+</select>
 </div>
 </header>
 <main><div id="count"></div><div id="list"></div><div id="empty" class="empty">該当する曲がありません。</div></main>
@@ -5066,7 +5072,8 @@ const honeyWorksArtistOrder=["HoneyWorks","瀬戸口優・榎本夏樹","榎本�
 const unitMembers=new Set(unitOrder);
 
 const genres=[...new Set(uniqueSongs.map(x=>x[0]))].sort((a,b)=>a.localeCompare(b,'ja'));
-const g=document.querySelector('#g'),q=document.querySelector('#q'),list=document.querySelector('#list');
+const g=document.querySelector('#g'),q=document.querySelector('#q'),view=document.querySelector('#view'),list=document.querySelector('#list');
+const jaCollator=new Intl.Collator('ja',{numeric:true,sensitivity:'base'});
 genres.sort((a,b)=>{if(a==='十八番')return -1;if(b==='十八番')return 1;return a.localeCompare(b,'ja')});
 genres.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;g.appendChild(o)});
 
@@ -5159,7 +5166,7 @@ function searchMatch(query, fields){
 }
 
 function render(){
- const query=q.value.trim(),genre=g.value;
+ const query=q.value.trim(),genre=g.value,mode=view.value;
  const filtered=uniqueSongs.filter(([gg,group,a,t])=>
    (!genre||gg===genre)&&(!query||searchMatch(query,[gg,group,a,t])));
  const groups={};
@@ -5167,6 +5174,24 @@ function render(){
    groups[gg]??={};groups[gg][group]??={};groups[gg][group][a]??=[];groups[gg][group][a].push(t);
  });
  list.innerHTML='';
+ // アーティスト表示：ジャンル・グループ・ユニットをまとめ、アーティスト名で五十音順に表示
+ if(mode==='artist'){
+   const artists={};
+   filtered.forEach(([gg,group,artist,title])=>{
+     if(!artist) return;
+     artists[artist]??=[];
+     artists[artist].push(title);
+   });
+   Object.keys(artists).sort((a,b)=>jaCollator.compare(a,b)).forEach(name=>{
+     const titles=[...artists[name]].sort((a,b)=>jaCollator.compare(a,b));
+     list.appendChild(makeArtistDetails(name,titles));
+   });
+ }else if(mode==='song'){
+   // 曲名表示：全ジャンルの曲名をまとめて五十音順に表示
+   const titles=filtered.map(([,group,artist,title])=>title);
+   titles.sort((a,b)=>jaCollator.compare(a,b));
+   list.appendChild(makeSongList(titles));
+ }else{
  Object.keys(groups).sort((a,b)=>{
    const order=["十八番","Vtuber","HoneyWorks","ボカロ","アニソン","J-POP","邦楽","その他"];
    const ia=order.indexOf(a),ib=order.indexOf(b);return (ia<0?999:ia)-(ib<0?999:ib)||a.localeCompare(b,'ja');
@@ -5260,10 +5285,11 @@ function render(){
      });list.appendChild(gd);
    }
  });
+ }
  document.querySelector('#count').textContent=`表示：${filtered.length}曲 / 全${uniqueSongs.length}曲`;
  document.querySelector('#empty').style.display=filtered.length?'none':'block';
 }
-q.addEventListener('input',render);g.addEventListener('change',render);render();
+q.addEventListener('input',render);g.addEventListener('change',render);view.addEventListener('change',render);render();
 </script>
 <div class="sea-footer" aria-hidden="true">
           🫧  🎤  🫧  〰️  🫧  🎤  🫧
